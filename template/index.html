@@ -1,0 +1,35 @@
+{% extends 'headerPage.html' %}
+
+{% block content%}
+
+    <h2> Species Prediction </h2>
+
+    <h3>Please enter details:</h3>
+    <br>
+    {%  if scoreval  %}
+    <form method="post" enctype="multipart/form-data" action="updateDataBase">
+    {% else %}
+    <form method="post" enctype="multipart/form-data" action="PredictSpecies">
+    {% endif%}
+ {% csrf_token %}
+ <div class="col-md-4 col-sm-4"><label for="sl">Sepal Length:</label></div><input type="text" id="sl" name="SepalLengthCm" value={{temp.SepalLengthCm}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="sl">Sepal Width:</label></div><input type="text" id="sl" name="SepalWidthCm" value={{temp.SepalWidthCm}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="sl">Petal Length:</label></div><input type="text" id="sl" name="PetalLengthCm" value={{temp.PetalLengthCm}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="sl">Petal Width:</label></div><input type="text" id="sl" name="PetalWidthCm" value={{temp.PetalWidthCm}}><br><br>
+ <br>
+
+ {%  if scoreval  %}
+ <h1>The mpg score is {{scoreval}}</h1>
+ <h3>If the response is good. Do you weant to save it in DB?
+ </h3>
+ <input type="hidden" id="Species" name="Species" value={{scoreval}}>
+ <input type="submit" value="Submit" ></div>
+ {% else%}
+ <input type="submit" value="Submit" ></div>
+ {% endif %}
+
+</form>
+<br>
+
+
+{% endblock %}
